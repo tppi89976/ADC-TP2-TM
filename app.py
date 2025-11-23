@@ -42,3 +42,30 @@ def listar_clubes():
     print("=== Equipas Inscritas ===")
     for i, c in enumerate(clubes, 1):
         print(f"{i}. {c.get('nome')} — {c.get('cidade','-')} — contacto: {c.get('contacto','-')} (inscrito por: {c.get('inscrito_por')})")
+# -------------------------
+# Clubes (escrita)
+# -------------------------
+def submeter_clube(user):
+    if user is None:
+        print("Tem de estar autenticado para submeter inscrições.")
+        return
+    clubes = carregar_json(CLUBES_FILE)
+    print("=== Submeter Inscrição de Clube ===")
+    nome = input("Nome do clube: ").strip()
+    if any(c.get("nome","").lower() == nome.lower() for c in clubes):
+        print("Erro: clube já inscrito.")
+        registar_log(user.get("username","anon"), f"inscricao_duplicada:{nome}")
+        return
+    contacto = input("Contacto (email/tel): ").strip()
+    cidade = input("Cidade: ").strip()
+    entry = {
+        "nome": nome,
+        "contacto": contacto,
+        "cidade": cidade,
+        "inscrito_por": user.get("username"),
+        "time": now_iso()
+    }
+    clubes.append(entry)
+    guardar_json(CLUBES_FILE, clubes)
+    registar_log(user.get("username"), f"inscricao_submetida:{nome}")
+    print("Inscrição submetida com sucesso.")
