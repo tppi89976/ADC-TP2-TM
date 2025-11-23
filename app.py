@@ -30,4 +30,3 @@ def bootstrap_files():
     for p in (CLUBES_FILE, f"{DATA_DIR}/users.json", f"{DATA_DIR}/logs.json"):
         if not os.path.exists(p):
             guardar_json(p, [])  # usa a função de db.py
-Git:
