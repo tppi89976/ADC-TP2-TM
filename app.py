@@ -139,3 +139,12 @@ def menu_user(user):
             break
         else:
             print("Opção inválida.")
+# -------------------------
+# Entry point
+# -------------------------
+def main():
+    bootstrap_files()
+    menu_anonymous()
+
+if __name__ == "__main__":
+    main()
