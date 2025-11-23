@@ -30,4 +30,15 @@ def bootstrap_files():
     for p in (CLUBES_FILE, f"{DATA_DIR}/users.json", f"{DATA_DIR}/logs.json"):
         if not os.path.exists(p):
             guardar_json(p, [])  # usa a função de db.py
-Git:
+
+# -------------------------
+# Clubes (leitura)
+# -------------------------
+def listar_clubes():
+    clubes = carregar_json(CLUBES_FILE)
+    if not clubes:
+        print("Nenhuma equipa inscrita.")
+        return
+    print("=== Equipas Inscritas ===")
+    for i, c in enumerate(clubes, 1):
+        print(f"{i}. {c.get('nome')} — {c.get('cidade','-')} — contacto: {c.get('contacto','-')} (inscrito por: {c.get('inscrito_por')})")
