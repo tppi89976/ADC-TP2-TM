@@ -103,3 +103,39 @@ def login_flow():
     print(f"Bem-vindo, {user.get('name',username)} ({user.get('role')})")
     registar_log(user.get("username"), "login")
     return user
+
+def menu_user(user):
+    role = user.get("role")
+    while True:
+        print(f"\n--- Menu ({user.get('username')} - {role}) ---")
+        print("1) Atualizar dados pessoais (via auth module)")
+        print("2) Alterar password")
+        print("3) Eliminar conta (não implementado aqui)")
+        print("4) Submeter inscrição de clube")
+        print("5) Ver clubes")
+        if verificar_role(user, "administrador"):
+            print("6) Painel administrador (listar inscrições + logs)")
+        print("9) Logout")
+        choice = input("> ").strip()
+        if choice == "1":
+            # se tiveres uma função update_profile em auth.py, chama-a
+            try:
+                from auth import update_profile
+                update_profile(user)
+            except Exception:
+                print("Funcionalidade update_profile indisponível.")
+        elif choice == "2":
+            change_password(user)
+        elif choice == "3":
+            print("Eliminar conta: usar auth.delete_account se existir.")
+        elif choice == "4":
+            submeter_clube(user)
+        elif choice == "5":
+            listar_clubes()
+        elif choice == "6" and verificar_role(user, "administrador"):
+            listar_inscricoes_admin()
+        elif choice == "9":
+            registar_log(user.get("username"), "logout")
+            break
+        else:
+            print("Opção inválida.")
