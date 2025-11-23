@@ -69,3 +69,37 @@ def submeter_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     registar_log(user.get("username"), f"inscricao_submetida:{nome}")
     print("Inscrição submetida com sucesso.")
+# -------------------------
+# Autenticação & menus
+# -------------------------
+def menu_anonymous():
+    while True:
+        print("\n--- Menu Principal ---")
+        print("1) Registar")
+        print("2) Login")
+        print("0) Sair")
+        c = input("> ").strip()
+        if c == "1":
+            register_user()   # função do auth.py
+        elif c == "2":
+            user = login_flow()
+            if user:
+                menu_user(user)
+        elif c == "0":
+            print("Até logo.")
+            break
+        else:
+            print("Opção inválida.")
+
+def login_flow():
+    print("=== Login ===")
+    username = input("username: ").strip()
+    pwd = input("Password: ").strip()
+    user = authenticate(username, pwd)
+    if not user:
+        print("Autenticação falhou.")
+        registar_log("anon", f"login_failed:{username}")
+        return None
+    print(f"Bem-vindo, {user.get('name',username)} ({user.get('role')})")
+    registar_log(user.get("username"), "login")
+    return user
