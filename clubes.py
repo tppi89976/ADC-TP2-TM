@@ -35,3 +35,17 @@ def submeter_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     registar_log(user.get("username"), f"inscricao_submetida:{nome}")
     print("Inscrição submetida com sucesso.")
+
+def remover_clube(user):
+    clubes = carregar_json(CLUBES_FILE)
+    nome = input("Nome do clube a remover: ").strip()
+    clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
+    if not clube:
+        print("Clube não encontrado.")
+        return
+    if user['role'] != 'administrador' and clube['inscrito_por'] != user['username']:
+        print("Não tens permissão para remover este clube.")
+        return
+    clubes.remove(clube)
+    guardar_json(CLUBES_FILE, clubes)
+    print(f"Clube {nome} removido com sucesso.")
