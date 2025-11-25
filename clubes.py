@@ -11,6 +11,7 @@ def listar_clubes():
     for i, c in enumerate(clubes, 1):
         print(f"{i}. {c.get('nome')} — {c.get('cidade','-')} — contacto: {c.get('contacto','-')} (inscrito por: {c.get('inscrito_por')})")
 
+
 def submeter_clube(user):
     if user is None:
         print("Tem de estar autenticado para submeter inscrições.")
@@ -34,35 +35,3 @@ def submeter_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     registar_log(user.get("username"), f"inscricao_submetida:{nome}")
     print("Inscrição submetida com sucesso.")
-
-    def remover_clube(user):
-    clubes = carregar_json(CLUBES_FILE)
-    nome = input("Nome do clube a remover: ").strip()
-    clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
-    if not clube:
-        print("Clube não encontrado.")
-        return
-    if user['role'] != 'administrador' and clube['inscrito_por'] != user['username']:
-        print("Não tens permissão para remover este clube.")
-        return
-    clubes.remove(clube)
-    guardar_json(CLUBES_FILE, clubes)
-    print(f"Clube {nome} removido com sucesso.")
-
-def editar_clube(user):
-    clubes = carregar_json(CLUBES_FILE)
-    nome = input("Nome do clube a editar: ").strip()
-    clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
-    if not clube:
-        print("Clube não encontrado.")
-        return
-    if user['role'] != 'administrador' and clube['inscrito_por'] != user['username']:
-        print("Não tens permissão para editar este clube.")
-        return
-    novo_nome = input(f"Novo nome ({clube['nome']}): ").strip() or clube['nome']
-    novo_contato = input(f"Novo contacto ({clube.get('contacto','-')}): ").strip() or clube.get('contacto','-')
-    nova_cidade = input(f"Nova cidade ({clube.get('cidade','-')}): ").strip() or clube.get('cidade','-')
-    clube.update({"nome": novo_nome, "contacto": novo_contato, "cidade": nova_cidade})
-    guardar_json(CLUBES_FILE, clubes)
-    print("Clube atualizado com sucesso.")
-
