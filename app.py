@@ -5,7 +5,7 @@ import datetime
 app.py - Integração das features do TP2 (passo-a-passo)
 """
 
-from db import carregar_json, guardar_json
+from db import load_json, save_json
 from logs import registar_log
 from admin import listar_inscricoes_admin
 from permissoes import verificar_role
