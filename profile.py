@@ -64,3 +64,15 @@ def change_password(user):
     else:
         print("Password atual incorreta.")
 
+def delete_account(user):
+    confirmation = input(f"Tem a certeza que quer eliminar a conta {user['username']}? (s/n) ").strip().lower()
+    if confirmation == 's':
+        users = carregar_json(USERS_FILE)
+        users = [u for u in users if u['username'] != user['username']]
+        guardar_json(USERS_FILE, users)
+        registar_log(user['username'], "account_deleted")
+        print("Conta eliminada com sucesso.")
+        return True
+    print("Operação cancelada.")
+    return False
+
