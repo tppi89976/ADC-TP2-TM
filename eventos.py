@@ -49,3 +49,14 @@ def criar_evento(user):
         print(f"Evento {ev.get('nome')} removido com sucesso.")
     else:
         print("Índice inválido.")
+    
+def buscar_evento():
+    eventos = carregar_json(EVENTOS_FILE)
+    termo = input("Buscar evento por nome: ").strip().lower()
+    encontrados = [e for e in eventos if termo in e.get("nome","").lower()]
+    if not encontrados:
+        print("Nenhum evento encontrado.")
+        return
+    print("=== Eventos Encontrados ===")
+    for e in encontrados:
+        print(f"{e.get('nome')} - data: {e.get('data')} - clube: {e.get('clube')}")
