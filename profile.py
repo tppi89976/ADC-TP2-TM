@@ -91,4 +91,15 @@ def update_preferences(user):
         registar_log(user['username'], f"preference_updated:{key}={value}")
         print("Preferência atualizada com sucesso.")
 
+def activity_log(user):
+    print(f"\n=== Histórico de atividades ({user['username']}) ===")
+    logs = carregar_json("data/logs.json")
+    user_logs = [l for l in logs if l.get('user') == user['username']]
+    if not user_logs:
+        print("Sem atividades registradas.")
+        return
+    for l in user_logs:
+        print(f"{l.get('time')} - {l.get('action')}")
+    print("==============================")
+
 
