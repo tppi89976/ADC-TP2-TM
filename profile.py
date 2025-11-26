@@ -21,3 +21,12 @@ def view_profile(user):
     print(f"Role: {user.get('role', '-')}")
     print("=========================")
 
+
+def update_name(user):
+    new_name = input("Novo nome: ").strip()
+    if new_name:
+        user['name'] = new_name
+        save_user(user)
+        registar_log(user['username'], f"update_name:{new_name}")
+        print("Nome atualizado com sucesso.")
+
