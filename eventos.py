@@ -79,3 +79,13 @@ def editar_evento(user):
         print("Evento editado com sucesso.")
     else:
         print("Índice inválido.")
+
+
+def gerar_relatorio_eventos():
+    eventos = carregar_json(EVENTOS_FILE)
+    if not eventos:
+        print("Nenhum evento registado.")
+        return
+    print("=== Relatório de Eventos ===")
+    for e in eventos:
+        print(f"{e.get('nome')} - {e.get('data')} - Clube: {e.get('clube')} - Criado por: {e.get('criado_por')}")
