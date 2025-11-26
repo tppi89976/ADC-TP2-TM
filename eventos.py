@@ -60,3 +60,22 @@ def buscar_evento():
     print("=== Eventos Encontrados ===")
     for e in encontrados:
         print(f"{e.get('nome')} - data: {e.get('data')} - clube: {e.get('clube')}")
+
+def editar_evento(user):
+    if user is None:
+        print("Autenticação necessária.")
+        return
+    eventos = carregar_json(EVENTOS_FILE)
+    listar_eventos()
+    idx = int(input("Número do evento a editar: "))
+    if 1 <= idx <= len(eventos):
+        ev = eventos[idx-1]
+        print(f"Editando {ev.get('nome')}")
+        ev["nome"] = input(f"Novo nome [{ev.get('nome')}]: ").strip() or ev.get("nome")
+        ev["data"] = input(f"Nova data [{ev.get('data')}]: ").strip() or ev.get("data")
+        ev["clube"] = input(f"Novo clube [{ev.get('clube')}]: ").strip() or ev.get("clube")
+        guardar_json(EVENTOS_FILE, eventos)
+        registar_log(user.get("username"), f"evento_editado:{ev.get('nome')}")
+        print("Evento editado com sucesso.")
+    else:
+        print("Índice inválido.")
