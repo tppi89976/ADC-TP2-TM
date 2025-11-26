@@ -34,3 +34,18 @@ def criar_evento(user):
     guardar_json(EVENTOS_FILE, eventos)
     registar_log(user.get("username"), f"evento_criado:{nome}")
     print("Evento criado com sucesso.")
+
+    def remover_evento(user):
+        if user is None:
+            print("Autenticação necessária.")
+        return
+    eventos = carregar_json(EVENTOS_FILE)
+    listar_eventos()
+    idx = int(input("Número do evento a remover: "))
+    if 1 <= idx <= len(eventos):
+        ev = eventos.pop(idx-1)
+        guardar_json(EVENTOS_FILE, eventos)
+        registar_log(user.get("username"), f"evento_removido:{ev.get('nome')}")
+        print(f"Evento {ev.get('nome')} removido com sucesso.")
+    else:
+        print("Índice inválido.")
