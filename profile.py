@@ -30,3 +30,12 @@ def update_name(user):
         registar_log(user['username'], f"update_name:{new_name}")
         print("Nome atualizado com sucesso.")
 
+
+def update_email(user):
+    new_email = input("Novo email: ").strip()
+    if new_email:
+        user['email'] = new_email
+        save_user(user)
+        registar_log(user['username'], f"update_email:{new_email}")
+        print("Email atualizado com sucesso.")
+
