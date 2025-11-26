@@ -39,3 +39,12 @@ def update_email(user):
         registar_log(user['username'], f"update_email:{new_email}")
         print("Email atualizado com sucesso.")
 
+
+def update_phone(user):
+    new_phone = input("Novo telefone: ").strip()
+    if new_phone:
+        user['phone'] = new_phone
+        save_user(user)
+        registar_log(user['username'], f"update_phone:{new_phone}")
+        print("Telefone atualizado com sucesso.")
+
