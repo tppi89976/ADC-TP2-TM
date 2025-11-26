@@ -48,3 +48,19 @@ def update_phone(user):
         registar_log(user['username'], f"update_phone:{new_phone}")
         print("Telefone atualizado com sucesso.")
 
+def change_password(user):
+    from auth import authenticate  # reutiliza função existente
+    old_pwd = input("Password atual: ").strip()
+    if authenticate(user['username'], old_pwd):
+        new_pwd = input("Nova password: ").strip()
+        confirm_pwd = input("Confirmar nova password: ").strip()
+        if new_pwd == confirm_pwd and new_pwd:
+            user['password'] = new_pwd
+            save_user(user)
+            registar_log(user['username'], "password_changed")
+            print("Password alterada com sucesso.")
+        else:
+            print("Senhas não coincidem ou inválida.")
+    else:
+        print("Password atual incorreta.")
+
