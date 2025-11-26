@@ -76,3 +76,19 @@ def delete_account(user):
     print("Operação cancelada.")
     return False
 
+
+def update_preferences(user):
+    prefs = user.get('preferences', {})
+    print("\n=== Preferências atuais ===")
+    for k, v in prefs.items():
+        print(f"{k}: {v}")
+    key = input("Qual preferência deseja alterar? (ex: notificacao, tema) ").strip()
+    value = input("Novo valor: ").strip()
+    if key and value:
+        prefs[key] = value
+        user['preferences'] = prefs
+        save_user(user)
+        registar_log(user['username'], f"preference_updated:{key}={value}")
+        print("Preferência atualizada com sucesso.")
+
+
