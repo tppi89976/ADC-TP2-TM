@@ -81,9 +81,6 @@ Logs e Histórico
 
 Todas as ações importantes (login, logout, registo, submissão de inscrição, exportação, alterações de perfil e password) são registadas no ficheiro logs.json.
 
-Administradores podem consultar o histórico completo das ações.
-
-Estrutura de Dados
 
 Utilizadores (users.json): username, nome, email, role, password hash, data de criação.
 
