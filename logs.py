@@ -24,4 +24,5 @@ def registar_log(actor, acao, detalhes=""):
         "details": detalhes
     })
     with open(LOGS_FILE, "w", encoding="utf-8") as f:
+
         json.dump(logs, f, indent=2, ensure_ascii=False)
