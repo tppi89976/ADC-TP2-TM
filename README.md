@@ -93,4 +93,3 @@ Logs (logs.json): timestamp, actor, ação, detalhes.
 
 Considerações Finais
 
-Esta aplicação foi desenvolvida para fins de aprendizagem e simulação de gestão de inscrições desportivas. Inclui mecanismos básicos de segurança e validação, suporte a múltiplos tipos de utilizadores, persistência de dados em JSON e funcionalidades administrativas completas, tudo integrado num único ficheiro de fácil execução.
