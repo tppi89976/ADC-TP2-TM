@@ -16,6 +16,8 @@ from profile import view_profile, update_name, update_email, update_phone, chang
 
 DATA_DIR = "data"
 CLUBES_FILE = f"{DATA_DIR}/clubes.json"
+USERS_FILE = f"{DATA_DIR}/users.json"
+EVENTOS_FILE = f"{DATA_DIR}/eventos.json"
 
 def ensure_data_dir():
     if not os.path.isdir(DATA_DIR):
