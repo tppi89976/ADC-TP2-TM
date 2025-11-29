@@ -10,6 +10,9 @@ from logs import registar_log
 from admin import listar_inscricoes_admin
 from permissoes import verificar_role
 from auth import register_user, authenticate, change_password
+from clubes import listar_clubes, submeter_clube, remover_clube, editar_clube
+from eventos import listar_eventos, criar_evento, remover_evento, editar_evento, gerar_relatorio_eventos
+from profile import view_profile, update_name, update_email, update_phone, change_password, delete_account, update_preferences
 
 DATA_DIR = "data"
 CLUBES_FILE = f"{DATA_DIR}/clubes.json"
