@@ -49,15 +49,16 @@ def menu_anonymous():
         print("1) Registar")
         print("2) Login")
         print("0) Sair")
-        c = input("> ").strip()
-        if c == "1":
-            register_user()   # função do auth.py
-        elif c == "2":
-            user = login_flow()
+        choice = input("> ").strip()
+        if choice == "1":
+            from auth import register_user
+            register_user()
+        elif choice == "2":
+            user = authenticate_user()
             if user:
                 menu_user(user)
-        elif c == "0":
-            print("Até logo.")
+        elif choice == "0":
+            print("Até logo!")
             break
         else:
             print("Opção inválida.")
