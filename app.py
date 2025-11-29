@@ -66,17 +66,25 @@ def menu_anonymous():
 
 
 def menu_user(user):
-    role = user.get("role")
     while True:
-        print(f"\n--- Menu ({user.get('username')} - {role}) ---")
-        print("1) Atualizar dados pessoais (via auth module)")
-        print("2) Alterar password")
-        print("3) Eliminar conta (não implementado aqui)")
-        print("4) Submeter inscrição de clube")
-        print("5) Ver clubes")
-        if verificar_role(user, "administrador"):
-            print("6) Painel administrador (listar inscrições + logs)")
-        print("9) Logout")
+        print(f"\n--- Menu ({user.get('username')} - {user.get('role')}) ---")
+        print("1) Ver perfil")
+        print("2) Atualizar nome")
+        print("3) Atualizar email")
+        print("4) Atualizar telefone")
+        print("5) Alterar password")
+        print("6) Atualizar preferências")
+        print("7) Eliminar conta")
+        print("8) Listar clubes")
+        print("9) Submeter clube")
+        print("10) Editar clube")
+        print("11) Remover clube")
+        print("12) Listar eventos")
+        print("13) Criar evento")
+        print("14) Editar evento")
+        print("15) Remover evento")
+        print("16) Relatório de eventos")
+        print("0) Logout")
         choice = input("> ").strip()
         if choice == "1":
             # se tiveres uma função update_profile em auth.py, chama-a
