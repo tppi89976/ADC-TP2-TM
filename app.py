@@ -86,31 +86,45 @@ def menu_user(user):
         print("16) Relatório de eventos")
         print("0) Logout")
         choice = input("> ").strip()
+       
         if choice == "1":
-            # se tiveres uma função update_profile em auth.py, chama-a
-            try:
-                from auth import update_profile
-                update_profile(user)
-            except Exception:
-                print("Funcionalidade update_profile indisponível.")
+            view_profile(user)
         elif choice == "2":
-            change_password(user)
+            update_name(user)
         elif choice == "3":
-            print("Eliminar conta: usar auth.delete_account se existir.")
+            update_email(user)
         elif choice == "4":
-            submeter_clube(user)
+            update_phone(user)
         elif choice == "5":
+            change_password(user)
+        elif choice == "6":
+            update_preferences(user)
+        elif choice == "7":
+            if delete_account(user):
+                break
+        elif choice == "8":
             listar_clubes()
-        elif choice == "6" and verificar_role(user, "administrador"):
-            listar_inscricoes_admin()
         elif choice == "9":
+            submeter_clube(user)
+        elif choice == "10":
+            editar_clube(user)
+        elif choice == "11":
+            remover_clube(user)
+        elif choice == "12":
+            listar_eventos()
+        elif choice == "13":
+            criar_evento(user)
+        elif choice == "14":
+            editar_evento(user)
+        elif choice == "15":
+            remover_evento(user)
+        elif choice == "16":
+            gerar_relatorio_eventos()
+        elif choice == "0":
             registar_log(user.get("username"), "logout")
             break
         else:
             print("Opção inválida.")
-# -------------------------
-# Entry point
-# -------------------------
 def main():
     bootstrap_files()
     menu_anonymous()
