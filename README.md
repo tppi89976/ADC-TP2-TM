@@ -62,17 +62,6 @@ Confirmação ao eliminar conta.
 
 Estrutura de Código
 
-Toda a lógica da aplicação está centralizada em app.py, incluindo funções para persistência, autenticação, logging, gestão de clubes, administração e menus interativos. Não existem módulos separados; tudo está integrado num único ficheiro para facilitar execução e testes.
-
-Como Executar
-
-Certifique-se que tem Python 3 instalado.
-
-Execute a aplicação via terminal:
-
-python app.py
-
-
 O diretório data/ e os ficheiros JSON são criados automaticamente se não existirem.
 
 Utilize o administrador padrão (admin/admin123) para aceder a funcionalidades administrativas.
