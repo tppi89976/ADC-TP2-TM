@@ -126,7 +126,7 @@ def menu_user(user):
         else:
             print("Opção inválida.")
 def main():
-    bootstrap_files()
+    ensure_data_files()
     menu_anonymous()
 
 if __name__ == "__main__":
