@@ -19,9 +19,12 @@ CLUBES_FILE = f"{DATA_DIR}/clubes.json"
 USERS_FILE = f"{DATA_DIR}/users.json"
 EVENTOS_FILE = f"{DATA_DIR}/eventos.json"
 
-def ensure_data_dir():
-    if not os.path.isdir(DATA_DIR):
-        os.makedirs(DATA_DIR)
+def ensure_data_files():
+    """Garante que os ficheiros JSON existem"""
+    os.makedirs(DATA_DIR, exist_ok=True)
+    for f in [USERS_FILE, CLUBES_FILE, EVENTOS_FILE, f"{DATA_DIR}/logs.json"]:
+        if not os.path.exists(f):
+            guardar_json(f, [])
 
 def now_iso():
     return datetime.datetime.utcnow().isoformat() + "Z"
