@@ -29,6 +29,18 @@ def ensure_data_files():
 def now_iso():
     return datetime.datetime.utcnow().isoformat() + "Z"
 
+def authenticate_user():
+    from auth import authenticate
+    username = input("Username: ").strip()
+    pwd = input("Password: ").strip()
+    user = authenticate(username, pwd)
+    if user:
+        print(f"Bem-vindo, {user.get('name', username)} ({user.get('role')})")
+        registar_log(username, "login")
+        return user
+    print("Falha na autenticação.")
+    registar_log(username, "login_failed")
+    return None
 
 
 def menu_anonymous():
