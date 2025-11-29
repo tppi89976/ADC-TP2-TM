@@ -6,8 +6,6 @@ Funcionalidades Principais:
 
 Persistência de Dados:
 
-Todos os dados são armazenados em ficheiros JSON na pasta data/ (users.json, clubes.json, logs.json).
-
 Funções de leitura e escrita garantem que os ficheiros existam e que os dados sejam carregados e guardados corretamente.
 
 Gestão de Utilizadores:
@@ -88,5 +86,6 @@ Clubes (clubes.json): nome do clube, contacto, cidade, inscrito por, timestamp.
 
 Logs (logs.json): timestamp, actor, ação, detalhes.
 
-Considerações Finais
+As ações críticas da aplicação são registradas com timestamp, actor e detalhes. Logs incluem falhas de login, tentativas de inscrição fora do prazo e alterações de perfil.
+
 
