@@ -63,18 +63,7 @@ def menu_anonymous():
         else:
             print("Opção inválida.")
 
-def login_flow():
-    print("=== Login ===")
-    username = input("username: ").strip()
-    pwd = input("Password: ").strip()
-    user = authenticate(username, pwd)
-    if not user:
-        print("Autenticação falhou.")
-        registar_log("anon", f"login_failed:{username}")
-        return None
-    print(f"Bem-vindo, {user.get('name',username)} ({user.get('role')})")
-    registar_log(user.get("username"), "login")
-    return user
+
 
 def menu_user(user):
     role = user.get("role")
