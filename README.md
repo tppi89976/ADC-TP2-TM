@@ -91,6 +91,8 @@ Clubes (clubes.json): nome do clube, contacto, cidade, inscrito por, timestamp.
 
 Logs (logs.json): timestamp, actor, ação, detalhes.
 
-Considerações Finais
-
-Esta aplicação foi desenvolvida para fins de aprendizagem e simulação de gestão de inscrições desportivas. Inclui mecanismos básicos de segurança e validação, suporte a múltiplos tipos de utilizadores, persistência de dados em JSON e funcionalidades administrativas completas, tudo integrado num único ficheiro de fácil execução.
+Segurança:
+- Passwords armazenadas em SHA-256.
+- Bloqueio de inscrições duplicadas.
+- Confirmação obrigatória ao eliminar conta.
+- Verificação de prazo limite de submissão de clubes.
