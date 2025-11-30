@@ -52,6 +52,7 @@ USERS_FILE = f"{DATA_DIR}/users.json"
 EVENTOS_FILE = f"{DATA_DIR}/eventos.json"
 
 def ensure_data_files():
+    """Garante que os ficheiros de dados existem"""
     """Garante que os ficheiros JSON existem"""
     os.makedirs(DATA_DIR, exist_ok=True)
     for f in [USERS_FILE, CLUBES_FILE, EVENTOS_FILE, f"{DATA_DIR}/logs.json"]:
@@ -59,9 +60,20 @@ def ensure_data_files():
             guardar_json(f, [])
 
 def now_iso():
+    """
+Retorna a data e hora atual em formato ISO 8601 UTC.
+
+:return: str, data/hora no formato ISO 8601
+"""
     return datetime.datetime.utcnow().isoformat() + "Z"
 
 def authenticate_user():
+    """
+Solicita username e senha do usuário e tenta autenticar.
+Registra login ou falha no log.
+
+:return: dict do usuário autenticado ou None se falhar
+"""
     from auth import authenticate
     username = input("Username: ").strip()
     pwd = input("Password: ").strip()
