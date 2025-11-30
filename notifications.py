@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 
 DATA_DIR = "data"
 NOTIFICACOES_FILE = f"{DATA_DIR}/notificacoes.json"
@@ -8,3 +9,18 @@ def ensure_notificacoes_file():
     if not os.path.exists(NOTIFICACOES_FILE):
         with open(NOTIFICACOES_FILE, "w", encoding="utf-8") as f:
             json.dump([], f, indent=4)
+
+def salvar_notificacao(usuario, mensagem):
+    """Salva uma notificação para um usuário"""
+    ensure_notificacoes_file()
+    with open(NOTIFICACOES_FILE, "r", encoding="utf-8") as f:
+        notificacoes = json.load(f)
+    
+    entry = {
+        "usuario": usuario.get("username"),
+        "mensagem": mensagem,
+        "time": datetime.datetime.utcnow().isoformat() + "Z"
+    }
+    notificacoes.append(entry)
+    with open(NOTIFICACOES_FILE, "w", encoding="utf-8") as f:
+        json.dump(notificacoes, f, indent=4)
