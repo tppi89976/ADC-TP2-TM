@@ -63,6 +63,12 @@ def update_email(user):
 
 
 def update_phone(user):
+    """
+    Atualiza o telefone do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_phone = input("Novo telefone: ").strip()
     if new_phone:
         user['phone'] = new_phone
@@ -71,6 +77,13 @@ def update_phone(user):
         print("Telefone atualizado com sucesso.")
 
 def change_password(user):
+    """
+    Permite ao usuário alterar a password.
+    Reutiliza a função 'authenticate' do módulo auth para validar a password atual.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     from auth import authenticate  # reutiliza função existente
     old_pwd = input("Password atual: ").strip()
     if authenticate(user['username'], old_pwd):
@@ -87,6 +100,15 @@ def change_password(user):
         print("Password atual incorreta.")
 
 def delete_account(user):
+    """
+    Elimina a conta do usuário após confirmação.
+    
+    Args:
+        user (dict): Dicionário com informações do usuário.
+
+    Returns:
+        bool: True se a conta foi eliminada, False caso contrário.
+    """
     confirmation = input(f"Tem a certeza que quer eliminar a conta {user['username']}? (s/n) ").strip().lower()
     if confirmation == 's':
         users = carregar_json(USERS_FILE)
