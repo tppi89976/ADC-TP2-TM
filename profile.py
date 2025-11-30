@@ -6,12 +6,22 @@ from logs import registar_log
 USERS_FILE = "data/users.json"
 
 def now_iso():
+    """
+    Retorna o timestamp atual em formato ISO 8601 UTC.
+    
+    Returns:
+        str: Timestamp atual em formato 'YYYY-MM-DDTHH:MM:SS.sssZ'.
+    """
     return datetime.datetime.utcnow().isoformat() + "Z"
 
-# -------------------------
-# Visualizar perfil
-# -------------------------
+
 def view_profile(user):
+    """
+        Exibe os detalhes do perfil do usuário.
+
+        Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     print("\n=== Perfil do Usuário ===")
     print(f"Username: {user.get('username')}")
     print(f"Nome: {user.get('name', '-')}")
