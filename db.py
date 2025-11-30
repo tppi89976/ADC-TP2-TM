@@ -1,34 +1,40 @@
-import os
 import json
+import os
 
-def load_json(path, default=None):
+EVENTOS_FILE = "data/eventos.json"
+def carregar_json(file_path):
     """
     Carrega dados de um ficheiro JSON.
-    
-    Args:
-        path (str): caminho do ficheiro
-        default: valor retornado caso o ficheiro não exista ou esteja vazio
-    Returns:
-        dict/list: dados carregados do JSON ou default
-    """
-    if not os.path.exists(path):
-        return default if default is not None else []
-    with open(path, "r", encoding="utf-8") as f:
-        try:
-            return json.load(f)
-        except Exception:
-            return default if default is not None else []
 
-def save_json(path, data):
+    :param file_path: Caminho do ficheiro JSON a carregar.
+    :type file_path: str
+    :return: Conteúdo do ficheiro JSON como lista ou dicionário. Se o ficheiro não existir, retorna lista vazia.
+    :rtype: list | dict
+    :raises json.JSONDecodeError: Se o ficheiro não contiver JSON válido.
     """
-    Guarda dados num ficheiro JSON.
-    
-    Args:
-        path (str): caminho do ficheiro
-        data (dict/list): dados a guardar
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        raise
+
+
+def guardar_json(file_path, dados):
     """
-    dir_name = os.path.dirname(path)
-    if dir_name and not os.path.exists(dir_name):
-        os.makedirs(dir_name)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    Guarda dados em formato JSON num ficheiro, criando a pasta se necessário.
+
+    :param file_path: Caminho do ficheiro JSON a criar ou sobrescrever.
+    :type file_path: str
+    :param dados: Dados a guardar (lista ou dicionário).
+    :type dados: list | dict
+    :return: None
+    :rtype: None
+    """
+    # Garante que a pasta exista
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(dados, f, indent=4, ensure_ascii=False)
+
