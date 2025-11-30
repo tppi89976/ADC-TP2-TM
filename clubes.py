@@ -1,8 +1,40 @@
+"""
+Módulo de gestão de clubes.
+
+Este módulo permite listar, submeter, remover e editar clubes.
+Inclui funções de logging para cada operação.
+"""
 from db import carregar_json, guardar_json
 from logs import registar_log
+
 from utils import now_iso, CLUBES_FILE
 
+# db.py
+def carregar_json(filename):
+    """Stub para autodoc"""
+    return []
+
+def guardar_json(filename, data):
+    """Stub para autodoc"""
+    pass
+
+# utils.py
+CLUBES_FILE = "clubes.json"
+USERS_FILE = "users.json"
+LOGS_FILE = "logs.json"
+
+from datetime import datetime
+def now_iso():
+    return datetime.now().isoformat()
+
+
+
 def listar_clubes():
+    """
+    Lista todos os clubes registados.
+
+    Mostra o nome, cidade e contacto de cada clube.
+    """
     clubes = carregar_json(CLUBES_FILE)
     if not clubes:
         print("Nenhuma equipa inscrita.")
@@ -13,6 +45,7 @@ def listar_clubes():
 
 
 def submeter_clube(user):
+    
     if user is None:
         print("Tem de estar autenticado para submeter inscrições.")
         return
@@ -35,8 +68,15 @@ def submeter_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     registar_log(user.get("username"), f"inscricao_submetida:{nome}")
     print("Inscrição submetida com sucesso.")
+    
+    """
+    Submete um novo clube.
 
+    Apenas utilizadores autenticados podem submeter.
+    Verifica duplicações e regista log.
+    """
 def remover_clube(user):
+  
     clubes = carregar_json(CLUBES_FILE)
     nome = input("Nome do clube a remover: ").strip()
     clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
@@ -49,6 +89,12 @@ def remover_clube(user):
     clubes.remove(clube)
     guardar_json(CLUBES_FILE, clubes)
     print(f"Clube {nome} removido com sucesso.")
+
+    """
+    Remove um clube existente.
+
+    Apenas o administrador ou quem submeteu pode remover.
+    """
 
 def editar_clube(user):
     clubes = carregar_json(CLUBES_FILE)
@@ -66,3 +112,9 @@ def editar_clube(user):
     clube.update({"nome": novo_nome, "contacto": novo_contato, "cidade": nova_cidade})
     guardar_json(CLUBES_FILE, clubes)
     print("Clube atualizado com sucesso.")
+
+    """
+    Edita informações de um clube existente.
+
+    Apenas o administrador ou quem submeteu pode editar.
+    """
