@@ -6,12 +6,22 @@ from logs import registar_log
 USERS_FILE = "data/users.json"
 
 def now_iso():
+    """
+    Retorna o timestamp atual em formato ISO 8601 UTC.
+    
+    Returns:
+        str: Timestamp atual em formato 'YYYY-MM-DDTHH:MM:SS.sssZ'.
+    """
     return datetime.datetime.utcnow().isoformat() + "Z"
 
-# -------------------------
-# Visualizar perfil
-# -------------------------
+
 def view_profile(user):
+    """
+        Exibe os detalhes do perfil do usuário.
+
+        Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     print("\n=== Perfil do Usuário ===")
     print(f"Username: {user.get('username')}")
     print(f"Nome: {user.get('name', '-')}")
@@ -23,6 +33,12 @@ def view_profile(user):
 
 
 def update_name(user):
+    """
+    Atualiza o nome do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_name = input("Novo nome: ").strip()
     if new_name:
         user['name'] = new_name
@@ -32,6 +48,12 @@ def update_name(user):
 
 
 def update_email(user):
+    """
+    Atualiza o email do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_email = input("Novo email: ").strip()
     if new_email:
         user['email'] = new_email
@@ -41,6 +63,12 @@ def update_email(user):
 
 
 def update_phone(user):
+    """
+    Atualiza o telefone do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_phone = input("Novo telefone: ").strip()
     if new_phone:
         user['phone'] = new_phone
@@ -49,6 +77,13 @@ def update_phone(user):
         print("Telefone atualizado com sucesso.")
 
 def change_password(user):
+    """
+    Permite ao usuário alterar a password.
+    Reutiliza a função 'authenticate' do módulo auth para validar a password atual.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     from auth import authenticate  # reutiliza função existente
     old_pwd = input("Password atual: ").strip()
     if authenticate(user['username'], old_pwd):
@@ -65,6 +100,15 @@ def change_password(user):
         print("Password atual incorreta.")
 
 def delete_account(user):
+    """
+    Elimina a conta do usuário após confirmação.
+    
+    Args:
+        user (dict): Dicionário com informações do usuário.
+
+    Returns:
+        bool: True se a conta foi eliminada, False caso contrário.
+    """
     confirmation = input(f"Tem a certeza que quer eliminar a conta {user['username']}? (s/n) ").strip().lower()
     if confirmation == 's':
         users = carregar_json(USERS_FILE)
@@ -78,6 +122,12 @@ def delete_account(user):
 
 
 def update_preferences(user):
+    """
+    Atualiza as preferências do usuário.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     prefs = user.get('preferences', {})
     print("\n=== Preferências atuais ===")
     for k, v in prefs.items():
@@ -92,6 +142,12 @@ def update_preferences(user):
         print("Preferência atualizada com sucesso.")
 
 def activity_log(user):
+    """
+    Exibe o histórico de atividades do usuário.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     print(f"\n=== Histórico de atividades ({user['username']}) ===")
     logs = carregar_json("data/logs.json")
     user_logs = [l for l in logs if l.get('user') == user['username']]
