@@ -180,6 +180,10 @@ Permite acessar todas as funcionalidades do sistema.
         else:
             print("Opção inválida.")
 def main():
+    """
+Função principal do aplicativo.
+Garante os arquivos de dados e inicia o menu para usuários anônimos.
+"""
     ensure_data_files()
     menu_anonymous()
 
