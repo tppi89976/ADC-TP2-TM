@@ -1,7 +1,12 @@
 import datetime
-from db import carregar_json, guardar_json
+from db import carregar_json, guardar_json, EVENTOS_FILE
 from logs import registar_log
 
+try:
+    from db import EVENTOS_FILE
+except ImportError:
+    EVENTOS_FILE = "data/eventos.json"
+    
 DATA_DIR = "data"
 EVENTOS_FILE = f"{DATA_DIR}/eventos.json"
 

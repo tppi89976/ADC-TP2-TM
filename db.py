@@ -1,5 +1,7 @@
 import json
 import os 
+
+EVENTOS_FILE = "data/eventos.json"
 def carregar_json(file_path):
     try:
         with open(file_path, "r", encoding="utf-8") as f:
