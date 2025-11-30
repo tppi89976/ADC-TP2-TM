@@ -37,3 +37,9 @@ def notificar_novo_usuario(usuario):
     msg = f"Novo usuário registrado: {usuario.get('username')}"
     print(msg)
     salvar_notificacao(usuario, msg)
+
+def notificar_preferencia(usuario, pref, valor):
+    """Notifica sobre alteração de preferência"""
+    msg = f"Sua preferência '{pref}' foi alterada para '{valor}'"
+    print(msg)
+    salvar_notificacao(usuario, msg)
