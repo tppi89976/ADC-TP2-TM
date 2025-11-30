@@ -24,3 +24,9 @@ def salvar_notificacao(usuario, mensagem):
     notificacoes.append(entry)
     with open(NOTIFICACOES_FILE, "w", encoding="utf-8") as f:
         json.dump(notificacoes, f, indent=4)
+
+def notificar_evento(usuario, evento, acao):
+    """Notifica sobre ações em eventos"""
+    msg = f"Evento '{evento.get('nome')}' foi {acao}."
+    print(msg)
+    salvar_notificacao(usuario, msg)
