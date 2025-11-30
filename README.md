@@ -1,7 +1,6 @@
 TP2 - Liga Futebol Portugal (Consola, Persistência JSON)
 
-Este projeto é uma aplicação de consola desenvolvida em Python para gestão de utilizadores, clubes e inscrições na "Liga Futebol Portugal". A aplicação utiliza persistência em ficheiros JSON e inclui funcionalidades de logging, administração, permissões e menus dinâmicos adaptados ao tipo de utilizador.
-
+Este projeto é uma aplicação de consola desenvolvida em Python para gestão de utilizadores, clubes e inscrições na "Liga Futebol Portugal". A aplicação utiliza persistência em ficheiros JSON e inclui funcionalidades de logging, administração, permissões, menus dinâmicos e notificações. 
 Funcionalidades Principais:
 
 Persistência de Dados:
