@@ -88,6 +88,10 @@ Registra login ou falha no log.
 
 
 def menu_anonymous():
+    """
+Menu inicial para usuários não autenticados.
+Permite registrar-se, fazer login ou sair.
+"""
     while True:
         print("\n--- Menu Principal ---")
         print("1) Registar")
@@ -110,6 +114,12 @@ def menu_anonymous():
 
 
 def menu_user(user):
+    """
+Menu principal para usuários autenticados.
+Permite acessar todas as funcionalidades do sistema.
+
+:param user: dict contendo informações do usuário logado
+"""
     while True:
         print(f"\n--- Menu ({user.get('username')} - {user.get('role')}) ---")
         print("1) Ver perfil")
