@@ -1,5 +1,6 @@
 notifications Module
-===========
+====================
+
 
 .. automodule:: notifications
     :members:
