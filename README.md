@@ -1,12 +1,11 @@
 TP2 - Liga Futebol Portugal (Consola, Persistência JSON)
 
-Este projeto é uma aplicação de consola desenvolvida em Python para gestão de utilizadores, clubes e inscrições na "Liga Futebol Portugal". A aplicação utiliza persistência em ficheiros JSON e inclui funcionalidades de logging, administração, permissões e menus dinâmicos adaptados ao tipo de utilizador.
-
+Este projeto é uma aplicação de consola desenvolvida em Python para gestão de utilizadores, clubes e inscrições na "Liga Futebol Portugal". A aplicação utiliza persistência em ficheiros JSON e inclui funcionalidades de logging, administração, permissões, menus dinâmicos e notificações. 
 Funcionalidades Principais:
 
 Persistência de Dados:
 
-Todos os dados são armazenados em ficheiros JSON na pasta data/ (users.json, clubes.json, logs.json).
+Todos os dados são armazenados em ficheiros JSON na pasta data/ (users.json, clubes.json, eventos.json, logs.json, notificacoes.json).
 
 Funções de leitura e escrita garantem que os ficheiros existam e que os dados sejam carregados e guardados corretamente.
 
@@ -22,7 +21,7 @@ Eliminação de conta com confirmação.
 
 Um administrador padrão é criado automaticamente (username: admin, password: admin123).
 
-Gestão de Clubes
+Gestão de Clubes:
 
 Submissão de inscrições de clubes, bloqueando duplicados e respeitando uma data limite (INSCRICAO_DEADLINE).
 
@@ -32,7 +31,21 @@ Exportação das inscrições para ficheiro CSV com timestamp.
 
 As ações de inscrição e exportação são registadas em logs.
 
-Administração e Logs
+Notificações:
+
+Notificações para utilizadores sobre eventos, alterações de perfil e novo registo de utilizadores.
+
+Armazenadas em notificacoes.json.
+
+Funções de visualização de notificações por utilizador.
+
+Gestão de Eventos:
+
+Criação, edição e remoção de eventos.
+
+Listagem de eventos e geração de relatórios.
+
+Administração e Logs:
 
 Administradores podem listar todas as inscrições e consultar os logs das ações realizadas.
 
@@ -62,17 +75,6 @@ Confirmação ao eliminar conta.
 
 Estrutura de Código
 
-Toda a lógica da aplicação está centralizada em app.py, incluindo funções para persistência, autenticação, logging, gestão de clubes, administração e menus interativos. Não existem módulos separados; tudo está integrado num único ficheiro para facilitar execução e testes.
-
-Como Executar
-
-Certifique-se que tem Python 3 instalado.
-
-Execute a aplicação via terminal:
-
-python app.py
-
-
 O diretório data/ e os ficheiros JSON são criados automaticamente se não existirem.
 
 Utilize o administrador padrão (admin/admin123) para aceder a funcionalidades administrativas.
@@ -89,8 +91,22 @@ Utilizadores (users.json): username, nome, email, role, password hash, data de c
 
 Clubes (clubes.json): nome do clube, contacto, cidade, inscrito por, timestamp.
 
+Eventos (eventos.json): nome, data, local, responsável, etc.
+
 Logs (logs.json): timestamp, actor, ação, detalhes.
 
-Considerações Finais
+Notificações (notificacoes.json): usuario, mensagem, timestamp.
 
-Esta aplicação foi desenvolvida para fins de aprendizagem e simulação de gestão de inscrições desportivas. Inclui mecanismos básicos de segurança e validação, suporte a múltiplos tipos de utilizadores, persistência de dados em JSON e funcionalidades administrativas completas, tudo integrado num único ficheiro de fácil execução.
+Segurança:
+- Passwords armazenadas em SHA-256.
+- Bloqueio de inscrições duplicadas.
+- Confirmação obrigatória ao eliminar conta.
+- Verificação de prazo limite de submissão de clubes.
+
+omo Executar
+
+python app.py
+
+Siga o menu interativo conforme o seu role.
+
+Utilize o administrador padrão para tarefas de gestão.
