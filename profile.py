@@ -33,6 +33,12 @@ def view_profile(user):
 
 
 def update_name(user):
+    """
+    Atualiza o nome do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_name = input("Novo nome: ").strip()
     if new_name:
         user['name'] = new_name
@@ -42,6 +48,12 @@ def update_name(user):
 
 
 def update_email(user):
+    """
+    Atualiza o email do usuário e registra a ação no log.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     new_email = input("Novo email: ").strip()
     if new_email:
         user['email'] = new_email
