@@ -9,7 +9,7 @@ Todos os dados são armazenados em ficheiros JSON na pasta data/ (users.json, cl
 
 Funções de leitura e escrita garantem que os ficheiros existam e que os dados sejam carregados e guardados corretamente.
 
-Gestão de Utilizadores:
+Gestão de Utilizadores
 
 Registo de novos utilizadores com username, nome, email e password.
 
@@ -30,6 +30,12 @@ Listagem de todos os clubes inscritos.
 Exportação das inscrições para ficheiro CSV com timestamp.
 
 As ações de inscrição e exportação são registadas em logs.
+
+Gestão de Eventos
+
+Criação, edição e remoção de eventos.
+
+Listagem de eventos e geração de relatórios.
 
 Administração e Logs
 
