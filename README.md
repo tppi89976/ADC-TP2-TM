@@ -39,13 +39,13 @@ Armazenadas em notificacoes.json.
 
 Funções de visualização de notificações por utilizador.
 
-Gestão de Eventos
+Gestão de Eventos:
 
 Criação, edição e remoção de eventos.
 
 Listagem de eventos e geração de relatórios.
 
-Administração e Logs
+Administração e Logs:
 
 Administradores podem listar todas as inscrições e consultar os logs das ações realizadas.
 
@@ -91,10 +91,22 @@ Utilizadores (users.json): username, nome, email, role, password hash, data de c
 
 Clubes (clubes.json): nome do clube, contacto, cidade, inscrito por, timestamp.
 
+Eventos (eventos.json): nome, data, local, responsável, etc.
+
 Logs (logs.json): timestamp, actor, ação, detalhes.
+
+Notificações (notificacoes.json): usuario, mensagem, timestamp.
 
 Segurança:
 - Passwords armazenadas em SHA-256.
 - Bloqueio de inscrições duplicadas.
 - Confirmação obrigatória ao eliminar conta.
 - Verificação de prazo limite de submissão de clubes.
+
+omo Executar
+
+python app.py
+
+Siga o menu interativo conforme o seu role.
+
+Utilize o administrador padrão para tarefas de gestão.
