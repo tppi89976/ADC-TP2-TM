@@ -30,3 +30,10 @@ def notificar_evento(usuario, evento, acao):
     msg = f"Evento '{evento.get('nome')}' foi {acao}."
     print(msg)
     salvar_notificacao(usuario, msg)
+
+
+def notificar_novo_usuario(usuario):
+    """Notifica sobre registro de novo usuário"""
+    msg = f"Novo usuário registrado: {usuario.get('username')}"
+    print(msg)
+    salvar_notificacao(usuario, msg)
