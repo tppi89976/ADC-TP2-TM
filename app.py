@@ -3,6 +3,40 @@ import os
 import datetime
 """
 app.py - Integração das features do TP2 (passo-a-passo)
+
+Este módulo centraliza todas as funcionalidades do sistema:
+
+Gestão de usuários (perfil, autenticação, registro)
+
+Gestão de clubes (listar, submeter, editar, remover)
+
+Gestão de eventos (listar, criar, editar, remover, gerar relatório)
+
+Logging de ações dos usuários
+
+Arquivos de dados usados:
+
+data/users.json
+
+data/clubes.json
+
+data/eventos.json
+
+data/logs.json
+
+Dependências:
+
+db.py : funções de carregamento e gravação JSON
+
+logs.py : função registar_log()
+
+auth.py : autenticação e registro de usuários
+
+clubes.py : funções CRUD de clubes
+
+eventos.py : funções CRUD de eventos
+
+profile.py : funções de perfil de usuário
 """
 
 from db import carregar_json, guardar_json
