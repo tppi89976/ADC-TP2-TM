@@ -18,9 +18,12 @@ author = 'MARTIM TIAGO'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',  # corrigido
-    'sphinx.ext.napoleon'  # se usas docstrings no estilo Google/NumPy
+    'sphinx.ext.napoleon',   #  correto
+    'sphinx.ext.viewcode',   # opcional, mostra código fonte
+    'sphinx.ext.autodoc',    #  necessário para docstrings
 ]
+
+
 
 
 templates_path = ['_templates']
