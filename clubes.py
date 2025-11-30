@@ -45,7 +45,12 @@ def listar_clubes():
 
 
 def submeter_clube(user):
-    
+    """
+    Submete um novo clube.
+
+    Apenas utilizadores autenticados podem submeter.
+    Verifica duplicações e regista log.
+    """
     if user is None:
         print("Tem de estar autenticado para submeter inscrições.")
         return
@@ -69,14 +74,13 @@ def submeter_clube(user):
     registar_log(user.get("username"), f"inscricao_submetida:{nome}")
     print("Inscrição submetida com sucesso.")
     
-    """
-    Submete um novo clube.
-
-    Apenas utilizadores autenticados podem submeter.
-    Verifica duplicações e regista log.
-    """
+    
 def remover_clube(user):
-  
+    """
+    Remove um clube existente.
+
+    Apenas o administrador ou quem submeteu pode remover.
+    """
     clubes = carregar_json(CLUBES_FILE)
     nome = input("Nome do clube a remover: ").strip()
     clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
@@ -90,13 +94,14 @@ def remover_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     print(f"Clube {nome} removido com sucesso.")
 
-    """
-    Remove um clube existente.
-
-    Apenas o administrador ou quem submeteu pode remover.
-    """
+    
 
 def editar_clube(user):
+    """
+    Edita informações de um clube existente.
+
+    Apenas o administrador ou quem submeteu pode editar.
+    """
     clubes = carregar_json(CLUBES_FILE)
     nome = input("Nome do clube a editar: ").strip()
     clube = next((c for c in clubes if c['nome'].lower() == nome.lower()), None)
@@ -113,8 +118,3 @@ def editar_clube(user):
     guardar_json(CLUBES_FILE, clubes)
     print("Clube atualizado com sucesso.")
 
-    """
-    Edita informações de um clube existente.
-
-    Apenas o administrador ou quem submeteu pode editar.
-    """
