@@ -43,3 +43,18 @@ def notificar_preferencia(usuario, pref, valor):
     msg = f"Sua preferência '{pref}' foi alterada para '{valor}'"
     print(msg)
     salvar_notificacao(usuario, msg)
+
+def listar_notificacoes(usuario):
+    """Lista todas as notificações de um usuário"""
+    ensure_notificacoes_file()
+    with open(NOTIFICACOES_FILE, "r", encoding="utf-8") as f:
+        notificacoes = json.load(f)
+    
+    user_notifs = [n for n in notificacoes if n["usuario"] == usuario.get("username")]
+    if not user_notifs:
+        print("Nenhuma notificação encontrada.")
+        return
+    
+    print(f"=== Notificações de {usuario.get('username')} ===")
+    for n in user_notifs:
+        print(f"- {n['mensagem']} ({n['time']})")
