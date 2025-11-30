@@ -122,6 +122,12 @@ def delete_account(user):
 
 
 def update_preferences(user):
+    """
+    Atualiza as preferências do usuário.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     prefs = user.get('preferences', {})
     print("\n=== Preferências atuais ===")
     for k, v in prefs.items():
@@ -136,6 +142,12 @@ def update_preferences(user):
         print("Preferência atualizada com sucesso.")
 
 def activity_log(user):
+    """
+    Exibe o histórico de atividades do usuário.
+
+    Args:
+        user (dict): Dicionário com informações do usuário.
+    """
     print(f"\n=== Histórico de atividades ({user['username']}) ===")
     logs = carregar_json("data/logs.json")
     user_logs = [l for l in logs if l.get('user') == user['username']]
